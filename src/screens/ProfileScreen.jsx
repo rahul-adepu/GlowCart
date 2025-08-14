@@ -56,7 +56,9 @@ export default function ProfileScreen({ navigation }) {
           <Divider />
           <Row icon="⚙️" title="Terms and Conditions" />
           <Divider />
-          <Row icon="↩︎" title="Log Out" rightIconColor="#FF3B30" titleColor="#FF3B30" />
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Row icon="↩︎" title="Log Out" rightIconColor="#FF3B30" titleColor="#FF3B30" />
+          </TouchableOpacity>
         </View>
       </View>
 

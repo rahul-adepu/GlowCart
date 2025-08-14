@@ -11,7 +11,7 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = () => {
     if (email.trim().toLowerCase() === HARD_CODED_EMAIL && password === HARD_CODED_PASSWORD) {
-      navigation.navigate('Profile');
+      navigation.navigate('Home');
     } else {
       Alert.alert('Invalid credentials', `Use:\nEmail: ${HARD_CODED_EMAIL}\nPassword: ${HARD_CODED_PASSWORD}`);
     }
