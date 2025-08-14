@@ -37,14 +37,14 @@ export default function HomeScreen({ navigation }) {
   }, [products, query]);
 
   const renderItem = ({ item }) => (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail', { product: item })}>
       <Image source={{ uri: item.thumbnail || item.images?.[0] }} style={styles.cardImage} />
       <Text style={styles.cardTitle} numberOfLines={1}>{item.title}</Text>
       <View style={styles.cardRow}>
         <Text style={styles.cardPrice}>${item.price?.toFixed ? item.price.toFixed(2) : item.price}</Text>
         <Text style={styles.heart}>♡</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
