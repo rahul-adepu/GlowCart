@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Alert } from 'react-native';
+
+const HARD_CODED_EMAIL = 'olivia@gmail.com';
+const HARD_CODED_PASSWORD = 'Glow@123';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleLogin = () => {
+    if (email.trim().toLowerCase() === HARD_CODED_EMAIL && password === HARD_CODED_PASSWORD) {
+      navigation.navigate('Profile');
+    } else {
+      Alert.alert('Invalid credentials', `Use:\nEmail: ${HARD_CODED_EMAIL}\nPassword: ${HARD_CODED_PASSWORD}`);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -56,7 +67,7 @@ export default function LoginScreen({ navigation }) {
         </TouchableOpacity>
 
         {/* Login Button */}
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Log In</Text>
         </TouchableOpacity>
 
