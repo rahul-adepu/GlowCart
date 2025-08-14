@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -83,10 +83,12 @@ export default function LoginScreen() {
 
       {/* Bottom Section - Registration Prompt */}
       <View style={styles.bottomSection}>
-        <Text style={styles.registerText}>
+        <View style={styles.registerRow}>
           <Text style={styles.registerPrompt}>Not a Member? </Text>
-          <Text style={styles.registerLink}>Register Now</Text>
-        </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.registerLink}>Register Now</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -237,6 +239,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   
+  registerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  
   registerText: {
     fontSize: 16,
     textAlign: 'center',
@@ -244,10 +251,12 @@ const styles = StyleSheet.create({
   
   registerPrompt: {
     color: '#888888',
+    fontSize: 16,
   },
   
   registerLink: {
     color: '#C2185B',
     fontWeight: '600',
+    fontSize: 16,
   },
 });
