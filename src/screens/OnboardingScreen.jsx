@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 
-export default function OnboardingScreen() {
+export default function OnboardingScreen({ navigation }) {
+  const handleGetStarted = () => {
+    navigation.navigate('Login');
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#F8BBD9" />
@@ -26,7 +30,7 @@ export default function OnboardingScreen() {
 
       {/* Call to Action - at the bottom */}
       <View style={styles.actionSection}>
-        <TouchableOpacity style={styles.getStartedButton}>
+        <TouchableOpacity style={styles.getStartedButton} onPress={handleGetStarted}>
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
         
