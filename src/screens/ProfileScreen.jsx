@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFE9E6" />
@@ -62,10 +62,22 @@ export default function ProfileScreen() {
 
       {/* Bottom tab bar (visual only) */}
       <View style={styles.tabBar}>
-        <Tab icon="🏠" label="Home" />
-        <Tab icon="🏷️" label="Offers" />
-        <Tab icon="🤍" label="Wishlist" />
-        <Tab icon="👤" label="Profile" active />
+        <TouchableOpacity style={tabStyles.item} onPress={() => navigation.navigate('Home')}>
+          <Text style={tabStyles.icon}>🏠</Text>
+          <Text style={tabStyles.label}>Home</Text>
+        </TouchableOpacity>
+        <View style={tabStyles.item}>
+          <Text style={tabStyles.icon}>🏷️</Text>
+          <Text style={tabStyles.label}>Offers</Text>
+        </View>
+        <View style={tabStyles.item}>
+          <Text style={tabStyles.icon}>🤍</Text>
+          <Text style={tabStyles.label}>Wishlist</Text>
+        </View>
+        <View style={tabStyles.item}>
+          <Text style={[tabStyles.icon, tabStyles.iconActive]}>👤</Text>
+          <Text style={[tabStyles.label, tabStyles.labelActive]}>Profile</Text>
+        </View>
       </View>
     </View>
   );
