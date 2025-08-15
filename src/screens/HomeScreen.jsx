@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, TextInput, StatusBar, ActivityIndicator, Dimensions } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const API_URL = 'https://dummyjson.com/products';
 
@@ -55,8 +56,8 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.header}>
         <Text style={styles.brand}>Viorra</Text>
         <View style={styles.headerActions}>
-          <Text style={styles.headerIcon}>🔔</Text>
-          <Text style={[styles.headerIcon, { marginLeft: 12 }]}>👜</Text>
+          <MaterialCommunityIcons name="bell-outline" size={22} style={styles.headerIconReal} />
+          <MaterialCommunityIcons name="shopping-outline" size={22} style={[styles.headerIconReal, { marginLeft: 14 }]} />
         </View>
       </View>
 
@@ -105,19 +106,19 @@ export default function HomeScreen({ navigation }) {
       {/* Bottom tab bar */}
       <View style={styles.tabBar}>
         <TouchableOpacity style={tabStyles.item}>
-          <Text style={[tabStyles.icon, tabStyles.iconActive]}>🏠</Text>
+          <MaterialCommunityIcons name="home-outline" size={24} style={[tabStyles.iconReal, tabStyles.iconActiveReal]} />
           <Text style={[tabStyles.label, tabStyles.labelActive]}>Home</Text>
         </TouchableOpacity>
         <View style={tabStyles.item}>
-          <Text style={tabStyles.icon}>🏷️</Text>
+          <MaterialCommunityIcons name="tag-outline" size={24} style={tabStyles.iconReal} />
           <Text style={tabStyles.label}>Offers</Text>
         </View>
         <View style={tabStyles.item}>
-          <Text style={tabStyles.icon}>🤍</Text>
+          <MaterialCommunityIcons name="heart-outline" size={24} style={tabStyles.iconReal} />
           <Text style={tabStyles.label}>Wishlist</Text>
         </View>
         <TouchableOpacity style={tabStyles.item} onPress={() => navigation.navigate('Profile')}>
-          <Text style={tabStyles.icon}>👤</Text>
+          <MaterialCommunityIcons name="account-circle" size={24} style={tabStyles.iconReal} />
           <Text style={tabStyles.label}>Profile</Text>
         </TouchableOpacity>
       </View>
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   headerActions: { flexDirection: 'row', alignItems: 'center' },
-  headerIcon: { fontSize: 18 },
+  headerIconReal: { color: '#111' },
 
   searchRow: { paddingHorizontal: GAP, paddingVertical: 12 },
   searchBox: {
@@ -237,8 +238,8 @@ const styles = StyleSheet.create({
 
 const tabStyles = StyleSheet.create({
   item: { alignItems: 'center' },
-  icon: { fontSize: 22, color: '#9E9E9E' },
+  iconReal: { color: '#9E9E9E' },
   label: { fontSize: 12, color: '#9E9E9E', marginTop: 4 },
-  iconActive: { color: '#C2185B' },
+  iconActiveReal: { color: '#C2185B' },
   labelActive: { color: '#C2185B' },
 });
