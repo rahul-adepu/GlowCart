@@ -8,6 +8,9 @@ import {
   StatusBar,
   Alert,
   SafeAreaView,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -37,89 +40,92 @@ export default function LoginScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#E3A6A6" />
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'} keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 24}>
+        <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+          <View>
+            <View style={styles.topSection}>
+              <Text style={styles.greetingTitle}>Hello Again!</Text>
+              <Text style={styles.greetingSubtitle}>Welcome back you’ve{"\n"}been missed.</Text>
+            </View>
 
-      <View style={styles.topSection}>
-        <Text style={styles.greetingTitle}>Hello Again!</Text>
-        <Text style={styles.greetingSubtitle}>
-          Welcome back you’ve been missed.
-        </Text>
-      </View>
+            <View style={styles.inputSection}>
+              <View style={styles.inputContainer}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter your email Id"
+                  placeholderTextColor="#8A8A8A"
+                  value={email}
+                  onChangeText={setEmail}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
+                <MaterialCommunityIcons
+                  name="email-outline"
+                  size={22}
+                  color="#B07C7D"
+                  style={styles.inputRightIcon}
+                />
+              </View>
 
-      <View style={styles.inputSection}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your email Id"
-            placeholderTextColor="#8A8A8A"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-          <MaterialCommunityIcons
-            name="email-outline"
-            size={22}
-            color="#B07C7D"
-            style={styles.inputRightIcon}
-          />
-        </View>
+              <View style={styles.inputContainer}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Password"
+                  placeholderTextColor="#8A8A8A"
+                  value={password}
+                  onChangeText={setPassword}
+                  secureTextEntry={!showPassword}
+                />
+                <TouchableOpacity
+                  onPress={() => setShowPassword(!showPassword)}
+                  style={styles.inputRightIcon}
+                  accessibilityRole="button"
+                  accessibilityLabel={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  <MaterialCommunityIcons
+                    name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                    size={22}
+                    color="#B07C7D"
+                  />
+                </TouchableOpacity>
+              </View>
 
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor="#8A8A8A"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-          />
-          <TouchableOpacity
-            onPress={() => setShowPassword(!showPassword)}
-            style={styles.inputRightIcon}
-            accessibilityRole="button"
-            accessibilityLabel={showPassword ? 'Hide password' : 'Show password'}
-          >
-            <MaterialCommunityIcons
-              name={showPassword ? 'eye-outline' : 'eye-off-outline'}
-              size={22}
-              color="#B07C7D"
-            />
-          </TouchableOpacity>
-        </View>
+              <TouchableOpacity style={styles.forgotPasswordContainer}>
+                <Text style={styles.forgotPasswordText}>Forgot password</Text>
+              </TouchableOpacity>
 
-        <TouchableOpacity style={styles.forgotPasswordContainer}>
-          <Text style={styles.forgotPasswordText}>Forgot password</Text>
-        </TouchableOpacity>
+              <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+                <Text style={styles.loginButtonText}>Log In</Text>
+              </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-          <Text style={styles.loginButtonText}>Log In</Text>
-        </TouchableOpacity>
+              <View style={styles.separatorContainer}>
+                <View style={styles.separatorLine} />
+                <Text style={styles.separatorText}>Or Continue With</Text>
+                <View style={styles.separatorLine} />
+              </View>
 
-        <View style={styles.separatorContainer}>
-          <View style={styles.separatorLine} />
-          <Text style={styles.separatorText}>Or Continue With</Text>
-          <View style={styles.separatorLine} />
-        </View>
+              <View style={styles.socialLoginContainer}>
+                <TouchableOpacity style={styles.socialButton}>
+                  <AntDesign name="google" size={34} color="#DB4437" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.socialButton}>
+                  <AntDesign name="apple1" size={34} color="#000000" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.socialButton}>
+                  <AntDesign name="facebook-square" size={34} color="#1877F2" />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
 
-        <View style={styles.socialLoginContainer}>
-          <TouchableOpacity style={styles.socialButton}>
-            <AntDesign name="google" size={34} color="#DB4437" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialButton}>
-            <AntDesign name="apple1" size={34} color="#000000" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialButton}>
-            <AntDesign name="facebook-square" size={34} color="#1877F2" />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      <View style={styles.bottomSection}>
-        <Text style={styles.registerPrompt}>Not a Member? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-          <Text style={styles.registerLink}>Register Now</Text>
-        </TouchableOpacity>
-      </View>
+          <View style={styles.bottomSection}>
+            <Text style={styles.registerPrompt}>Not a Member? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+              <Text style={styles.registerLink}>Register Now</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -131,20 +137,22 @@ const styles = StyleSheet.create({
   },
 
   topSection: {
-    backgroundColor: '#E3A6A6',
+    backgroundColor: '#F1B0B0',
     paddingTop: 36,
     paddingBottom: 36,
     paddingHorizontal: 30,
     borderBottomLeftRadius: 48,
     borderBottomRightRadius: 48,
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
   greetingTitle: {
     fontSize: 38,
-    fontWeight: '800',
-    color: '#A33B40',
+    fontWeight: '700',
+    color: '#B84953',
     fontFamily: 'serif',
+    fontStyle: 'italic',
     marginBottom: 10,
   },
 
@@ -154,6 +162,7 @@ const styles = StyleSheet.create({
     color: '#B87C7C',
     fontFamily: 'System',
     textAlign: 'center',
+    lineHeight: 30,
   },
 
   inputSection: {
@@ -259,7 +268,8 @@ const styles = StyleSheet.create({
 
   bottomSection: {
     paddingHorizontal: 30,
-    paddingBottom: 40,
+    marginTop: 12,
+    marginBottom: 24,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
