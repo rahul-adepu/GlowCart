@@ -1,5 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
+
+// Replace with your image path
+const ONBOARDING_IMAGE = require('../assets/images/onboarding.png');
 
 export default function OnboardingScreen({ navigation }) {
   const handleGetStarted = () => {
@@ -8,36 +18,32 @@ export default function OnboardingScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#F8BBD9" />
-      
-      {/* Top spacing */}
-      <View style={styles.topSpacing} />
-      
-      {/* Product Display Image - positioned in middle section */}
+      <StatusBar barStyle="dark-content" backgroundColor="#eac6c6" />
       <View style={styles.imageContainer}>
         <Image
-          source={require('../assets/images/onboarding.png')}
+          source={ONBOARDING_IMAGE}
           style={styles.image}
-          resizeMode="contain"
+          resizeMode="cover"
         />
       </View>
-
-      {/* Branding Section - below the image */}
-      <View style={styles.brandingSection}>
-        <Text style={styles.brandName}>Viorra</Text>
-        <Text style={styles.tagline}>Your Beauty, Delivered.</Text>
-      </View>
-
-      {/* Call to Action - at the bottom */}
-      <View style={styles.actionSection}>
-        <TouchableOpacity style={styles.getStartedButton} onPress={handleGetStarted}>
-          <Text style={styles.buttonText}>Get Started</Text>
-        </TouchableOpacity>
-        
-        {/* Progress Indicator */}
-        <View style={styles.progressIndicator}>
-          <View style={styles.progressDot} />
-          <View style={styles.progressDotActive} />
+      <View style={styles.textContainer}>
+        <View style={styles.brandingSection}>
+          <Text style={styles.brandName}>Viorra</Text>
+          <Text style={styles.tagline}>Your Beauty, Delivered.</Text>
+        </View>
+        <View style={styles.actionSection}>
+          <TouchableOpacity
+            style={styles.getStartedButton}
+            onPress={handleGetStarted}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.buttonText}>Get Started</Text>
+          </TouchableOpacity>
+          <View style={styles.progressBarContainer}>
+            <View style={styles.progressBarBackground}>
+              <View style={styles.progressBarFilled} />
+            </View>
+          </View>
         </View>
       </View>
     </View>
@@ -47,94 +53,84 @@ export default function OnboardingScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8BBD9', // Soft pink background
-    paddingHorizontal: 20,
+    backgroundColor: '#eac6c6', // Soft pink
   },
-  
-  topSpacing: {
-    height: 80, // Space for status bar and top area
-  },
-  
   imageContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 20,
+    flex: 6,
+    width: '100%',
   },
-  
   image: {
-    width: '90%',
-    height: '50%',
-    maxHeight: 350,
+    width: '100%',
+    height: '100%',
   },
-  
   brandingSection: {
+    flex: 1,
     alignItems: 'center',
-    marginBottom: 50,
+    justifyContent: 'flex-end',
+    marginBottom: 8,
   },
-  
-  brandName: {
-    fontSize: 42,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    fontFamily: 'serif',
-    marginBottom: 12,
-    textShadowColor: 'rgba(0, 0, 0, 0.2)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
+  textContainer: {
+    flex: 4, // Give it a reasonable share. Adjust flex:6 and flex:4 as needed
+    backgroundColor: '#E8C1C1', // or remove this if background should match whole screen
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
-  
+
   tagline: {
-    fontSize: 20,
-    color: '#FFFFFF',
+    fontSize: 22,
+    color: '#fff',
     fontFamily: 'sans-serif',
     textAlign: 'center',
-    textShadowColor: 'rgba(0, 0, 0, 0.2)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
+    fontWeight: '300',
   },
-  
   actionSection: {
+    flex: 2,
     alignItems: 'center',
-    marginBottom: 40,
+    justifyContent: 'flex-start',
   },
-  
   getStartedButton: {
-    backgroundColor: '#C2185B', // Deep rose color matching the button in the image
-    paddingVertical: 18,
-    paddingHorizontal: 52,
-    borderRadius: 30,
-    marginBottom: 28,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
+    backgroundColor: '#ba5662',
+    paddingVertical: 16,
+    paddingHorizontal: 42,
+    borderRadius: 18,
+    marginTop: 10,
+    marginBottom: 22,
+    elevation: 3,
   },
-  
   buttonText: {
-    color: '#FFFFFF',
-    fontSize: 20,
-    fontWeight: '700',
+    color: '#fff',
+    fontSize: 22,
+    fontWeight: 'bold',
     letterSpacing: 0.5,
   },
-  
-  progressIndicator: {
-    flexDirection: 'row',
-    gap: 16,
+  brandName: {
+    fontFamily: 'Italiana',
+    fontWeight: '400',
+    fontSize: 60,
+    lineHeight: 64, // Try 21 for 1-line, or ~64 for better vertical centering
+    letterSpacing: -0.32,
+    textAlign: 'center',
+    color: '#fff',
   },
-  
-  progressDot: {
-    width: 28,
+
+  progressBarContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
+  progressBarBackground: {
+    width: 120,
     height: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.6)', // Semi-transparent white
     borderRadius: 5,
+    backgroundColor: '#f5dedb',
+    overflow: 'hidden',
+    flexDirection: 'row',
   },
-  
-  progressDotActive: {
-    width: 28,
-    height: 10,
-    backgroundColor: '#C2185B', // Dark rose
+
+  progressBarFilled: {
+    width: '47%',
+    height: '100%',
+    backgroundColor: '#ecd2cc',
     borderRadius: 5,
   },
 });

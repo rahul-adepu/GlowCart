@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  StatusBar,
+  Alert,
+} from 'react-native';
 
 const HARD_CODED_EMAIL = 'olivia@gmail.com';
 const HARD_CODED_PASSWORD = 'Glow@123';
@@ -10,21 +18,29 @@ export default function LoginScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    if (email.trim().toLowerCase() === HARD_CODED_EMAIL && password === HARD_CODED_PASSWORD) {
+    if (
+      email.trim().toLowerCase() === HARD_CODED_EMAIL &&
+      password === HARD_CODED_PASSWORD
+    ) {
       navigation.navigate('Home');
     } else {
-      Alert.alert('Invalid credentials', `Use:\nEmail: ${HARD_CODED_EMAIL}\nPassword: ${HARD_CODED_PASSWORD}`);
+      Alert.alert(
+        'Invalid credentials',
+        `Use:\nEmail: ${HARD_CODED_EMAIL}\nPassword: ${HARD_CODED_PASSWORD}`,
+      );
     }
   };
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FCE4EC" />
-      
+      <StatusBar barStyle="dark-content" backgroundColor="#F1B0B0" />
+
       {/* Top Section with Curved Bottom */}
       <View style={styles.topSection}>
         <Text style={styles.greetingTitle}>Hello Again!</Text>
-        <Text style={styles.greetingSubtitle}>Welcome back you've been missed.</Text>
+        <Text style={styles.greetingSubtitle}>
+          Welcome back you’ve been missed.
+        </Text>
       </View>
 
       {/* Middle Section - Input Fields */}
@@ -40,7 +56,6 @@ export default function LoginScreen({ navigation }) {
             keyboardType="email-address"
             autoCapitalize="none"
           />
-          <Text style={styles.inputIcon}>✉️</Text>
         </View>
 
         {/* Password Input */}
@@ -53,9 +68,9 @@ export default function LoginScreen({ navigation }) {
             onChangeText={setPassword}
             secureTextEntry={!showPassword}
           />
-          <TouchableOpacity 
-            style={styles.inputIcon}
+          <TouchableOpacity
             onPress={() => setShowPassword(!showPassword)}
+            style={styles.showPasswordContainer}
           >
             <Text>{showPassword ? '👁️' : '👁️‍🗨️'}</Text>
           </TouchableOpacity>
@@ -63,7 +78,7 @@ export default function LoginScreen({ navigation }) {
 
         {/* Forgot Password */}
         <TouchableOpacity style={styles.forgotPasswordContainer}>
-          <Text style={styles.forgotPasswordText}>Forgot password</Text>
+          <Text style={styles.forgotPasswordText}>Forgot password?</Text>
         </TouchableOpacity>
 
         {/* Login Button */}
@@ -84,22 +99,20 @@ export default function LoginScreen({ navigation }) {
             <Text style={styles.socialButtonText}>G</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialButton}>
-            <Text style={styles.socialButtonText}>🍎</Text>
+            <Text style={styles.socialButtonText}>A</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialButton}>
-            <Text style={styles.socialButtonText}>f</Text>
+            <Text style={styles.socialButtonText}>F</Text>
           </TouchableOpacity>
         </View>
       </View>
 
       {/* Bottom Section - Registration Prompt */}
       <View style={styles.bottomSection}>
-        <View style={styles.registerRow}>
-          <Text style={styles.registerPrompt}>Not a Member? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.registerLink}>Register Now</Text>
-          </TouchableOpacity>
-        </View>
+        <Text style={styles.registerPrompt}>Not a Member? </Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.registerLink}>Register Now</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -108,51 +121,51 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FEF7F7', // Light off-white pink background
+    backgroundColor: '#F1B0B0', // Light off-white pink background
   },
-  
+
   topSection: {
-    backgroundColor: '#FCE4EC', // Light pink background
-    paddingTop: 60,
+    backgroundColor: '#B84953', // Dark rose color for top section
+    paddingTop: 40,
     paddingBottom: 40,
     paddingHorizontal: 30,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 42,
+    borderBottomRightRadius: 42,
     alignItems: 'center',
   },
-  
+
   greetingTitle: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#C2185B', // Dark rose color
-    fontFamily: 'serif',
+    fontSize: 34, // Adjusted font size
+    fontWeight: '800', // ExtraBold
+    color: '#FFFFFF', // White color for text
+    fontFamily: 'Playfair Display',
     marginBottom: 8,
   },
-  
+
   greetingSubtitle: {
-    fontSize: 16,
-    color: '#888888',
-    fontFamily: 'sans-serif',
+    fontSize: 26, // Adjusted font size
+    fontWeight: '500', // Medium weight
+    color: '#AD7373', // Another shade of pink
+    fontFamily: 'Inter',
     textAlign: 'center',
   },
-  
+
   inputSection: {
     flex: 1,
     paddingHorizontal: 30,
     paddingTop: 40,
   },
-  
+
   inputContainer: {
     position: 'relative',
     marginBottom: 20,
   },
-  
+
   input: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 15,
+    borderRadius: 16,
     paddingVertical: 18,
     paddingHorizontal: 20,
-    paddingRight: 50,
     fontSize: 16,
     color: '#333333',
     shadowColor: '#000',
@@ -161,29 +174,28 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
-  
-  inputIcon: {
+
+  showPasswordContainer: {
     position: 'absolute',
     right: 20,
     top: '50%',
     marginTop: -12,
-    fontSize: 20,
   },
-  
+
   forgotPasswordContainer: {
     alignItems: 'flex-end',
     marginBottom: 30,
   },
-  
+
   forgotPasswordText: {
-    color: '#C2185B',
+    color: '#B84953',
     fontSize: 14,
     textDecorationLine: 'underline',
   },
-  
+
   loginButton: {
-    backgroundColor: '#C2185B',
-    borderRadius: 15,
+    backgroundColor: '#B84953',
+    borderRadius: 16,
     paddingVertical: 18,
     alignItems: 'center',
     marginBottom: 30,
@@ -193,38 +205,38 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
   },
-  
+
   loginButtonText: {
     color: '#FFFFFF',
     fontSize: 18,
     fontWeight: '600',
   },
-  
+
   separatorContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 30,
   },
-  
+
   separatorLine: {
     flex: 1,
     height: 1,
     backgroundColor: '#DDDDDD',
   },
-  
+
   separatorText: {
     color: '#888888',
     fontSize: 14,
     marginHorizontal: 15,
   },
-  
+
   socialLoginContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 20,
     marginBottom: 40,
   },
-  
+
   socialButton: {
     width: 50,
     height: 50,
@@ -238,35 +250,27 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
-  
+
   socialButtonText: {
     fontSize: 20,
     fontWeight: '600',
   },
-  
+
   bottomSection: {
     paddingHorizontal: 30,
     paddingBottom: 40,
     alignItems: 'center',
-  },
-  
-  registerRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: 'center',
   },
-  
-  registerText: {
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  
+
   registerPrompt: {
     color: '#888888',
     fontSize: 16,
   },
-  
+
   registerLink: {
-    color: '#C2185B',
+    color: '#B84953',
     fontWeight: '600',
     fontSize: 16,
   },
