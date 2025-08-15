@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   getStartedButton: {
-    backgroundColor: '#ba5662',
+    backgroundColor: '#B84953',
     paddingVertical: 16,
     paddingHorizontal: 42,
     borderRadius: 18,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   progressBarFilled: {
     width: '47%',
     height: '100%',
-    backgroundColor: '#ecd2cc',
+    backgroundColor: '#d0a49aff',
     borderRadius: 5,
   },
 });
