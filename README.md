@@ -35,9 +35,9 @@ Screenshots
 ------------------
 
 ![Login](assets/screenshots/login.png)
-![Register](docs/screenshots/register.png)
-![Home](docs/screenshots/home.png)
-![Product Detail](docs/screenshots/product.png)
+![Register](assets/screenshots/register.png)
+![Home](assets/screenshots/home.png)
+![Product Detail](assets/screenshots/product.png)
 
 
 Project structure
@@ -67,4 +67,4 @@ Troubleshooting
 
 Time taken
 ----------
-- 2 days to implement whole thing
+- 2 days to implement.
