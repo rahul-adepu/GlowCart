@@ -42,10 +42,13 @@ Quick test credentials
 
 ## Screenshots
 
-![Login](src/assets/screenshots/login.png)
-![Register](src/assets/screenshots/register.png)
-![Home](src/assets/screenshots/home.png)
-![Product Detail](src/assets/screenshots/product.png)
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+  <img src="src/assets/screenshots/login.png" alt="Login" width="200"/>
+  <img src="src/assets/screenshots/register.png" alt="Register" width="200"/>
+  <img src="src/assets/screenshots/home.png" alt="Home" width="200"/>
+  <img src="src/assets/screenshots/product.png" alt="Product Detail" width="200"/>
+  <img src="src/assets/screenshots/profile.png" alt="Profile" width="200"/>
+</div>
 
 ## Project structure
 
