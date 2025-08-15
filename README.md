@@ -43,11 +43,11 @@ Quick test credentials
 ## Screenshots
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-  <img src="src/assets/screenshots/login.png" alt="Login" width="200"/>
-  <img src="src/assets/screenshots/register.png" alt="Register" width="200"/>
-  <img src="src/assets/screenshots/home.png" alt="Home" width="200"/>
-  <img src="src/assets/screenshots/product.png" alt="Product Detail" width="200"/>
-  <img src="src/assets/screenshots/profile.png" alt="Profile" width="200"/>
+  <img src="src/assets/screenshots/login.png" alt="Login" width="100"/>
+  <img src="src/assets/screenshots/register.png" alt="Register" width="100"/>
+  <img src="src/assets/screenshots/home.png" alt="Home" width="100"/>
+  <img src="src/assets/screenshots/product.png" alt="Product Detail" width="100"/>
+  <img src="src/assets/screenshots/profile.png" alt="Profile" width="100"/>
 </div>
 
 ## Project structure
