@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function ProfileScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFE9E6" />
+      <StatusBar barStyle="dark-content" backgroundColor="#FBE5DE" />
 
       <View style={styles.content}>
         {/* Header */}
@@ -14,7 +15,7 @@ export default function ProfileScreen({ navigation }) {
             <View style={styles.headerUnderline} />
           </View>
           <TouchableOpacity style={styles.menuButton}>
-            <Text style={styles.menuDots}>···</Text>
+            <MaterialCommunityIcons name="dots-horizontal" size={20} color="#333" />
           </TouchableOpacity>
         </View>
 
@@ -31,33 +32,33 @@ export default function ProfileScreen({ navigation }) {
             <Text style={styles.userEmail}>Oliva@gmail.com</Text>
           </View>
           <TouchableOpacity style={styles.editButton}>
-            <Text style={styles.editIcon}>✎</Text>
+            <MaterialCommunityIcons name="square-edit-outline" size={22} color="#7D7D7D" />
           </TouchableOpacity>
         </View>
 
         {/* Section 1 */}
         <View style={styles.sectionCard}>
-          <Row icon="📍" title="Address" subtitle="Manage your saved address" />
+          <Row iconName="map-marker-outline" title="Address" subtitle="Manage your saved address" />
           <Divider />
-          <Row icon="🧾" title="Order History" subtitle="View your past orders" />
+          <Row iconName="clipboard-text-outline" title="Order History" subtitle="View your past orders" />
           <Divider />
-          <Row icon="🌐" title="Language" />
+          <Row iconName="web" title="Language" />
           <Divider />
-          <Row icon="🔔" title="Notifications" />
+          <Row iconName="bell-outline" title="Notifications" />
         </View>
 
         {/* Section 2 */}
         <View style={[styles.sectionCard, styles.lastSection]}>
-          <Row icon="🧑‍💼" title="Contact Us" />
+          <Row iconName="account-outline" title="Contact Us" />
           <Divider />
-          <Row icon="❓" title="Get Help" />
+          <Row iconName="help-circle-outline" title="Get Help" />
           <Divider />
-          <Row icon="🛡️" title="Privacy Policy" />
+          <Row iconName="shield-outline" title="Privacy Policy" />
           <Divider />
-          <Row icon="⚙️" title="Terms and Conditions" />
+          <Row iconName="cog-outline" title="Terms and Conditions" />
           <Divider />
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-            <Row icon="↩︎" title="Log Out" rightIconColor="#FF3B30" titleColor="#FF3B30" />
+            <Row iconName="arrow-left" title="Log Out" rightIconColor="#FF3B30" titleColor="#FF3B30" chevronColor="#FF3B30" />
           </TouchableOpacity>
         </View>
       </View>
@@ -65,19 +66,19 @@ export default function ProfileScreen({ navigation }) {
       {/* Bottom tab bar (visual only) */}
       <View style={styles.tabBar}>
         <TouchableOpacity style={tabStyles.item} onPress={() => navigation.navigate('Home')}>
-          <Text style={tabStyles.icon}>🏠</Text>
+          <MaterialCommunityIcons name="home-outline" size={24} style={tabStyles.icon} />
           <Text style={tabStyles.label}>Home</Text>
         </TouchableOpacity>
         <View style={tabStyles.item}>
-          <Text style={tabStyles.icon}>🏷️</Text>
+          <MaterialCommunityIcons name="tag-outline" size={24} style={tabStyles.icon} />
           <Text style={tabStyles.label}>Offers</Text>
         </View>
         <View style={tabStyles.item}>
-          <Text style={tabStyles.icon}>🤍</Text>
+          <MaterialCommunityIcons name="heart-outline" size={24} style={tabStyles.icon} />
           <Text style={tabStyles.label}>Wishlist</Text>
         </View>
         <View style={tabStyles.item}>
-          <Text style={[tabStyles.icon, tabStyles.iconActive]}>👤</Text>
+          <MaterialCommunityIcons name="account-circle" size={24} style={[tabStyles.icon, tabStyles.iconActive]} />
           <Text style={[tabStyles.label, tabStyles.labelActive]}>Profile</Text>
         </View>
       </View>
@@ -85,15 +86,15 @@ export default function ProfileScreen({ navigation }) {
   );
 }
 
-function Row({ icon, title, subtitle, rightIconColor = '#BDBDBD', titleColor = '#111111' }) {
+function Row({ iconName, title, subtitle, rightIconColor = '#BDBDBD', titleColor = '#111111', chevronColor }) {
   return (
     <View style={rowStyles.row}>
-      <Text style={rowStyles.leftIcon}>{icon}</Text>
+      <MaterialCommunityIcons name={iconName} size={22} style={rowStyles.leftIcon} />
       <View style={rowStyles.center}>
         <Text style={[rowStyles.title, { color: titleColor }]}>{title}</Text>
         {subtitle ? <Text style={rowStyles.subtitle}>{subtitle}</Text> : null}
       </View>
-      <Text style={[rowStyles.chevron, { color: rightIconColor }]}>›</Text>
+      <MaterialCommunityIcons name="chevron-right" size={22} style={[rowStyles.chevron, { color: chevronColor || rightIconColor }]} />
     </View>
   );
 }
@@ -114,7 +115,7 @@ function Tab({ icon, label, active }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFE9E6',
+    backgroundColor: '#FBE5DE',
   },
   content: {
     paddingTop: 12,
@@ -128,8 +129,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   headerTitle: {
-    fontSize: 26,
-    fontWeight: '700',
+    fontSize: 34,
+    fontWeight: '800',
     color: '#111111',
   },
   headerUnderline: {
@@ -187,9 +188,9 @@ const styles = StyleSheet.create({
   sectionCard: {
     backgroundColor: '#FFFFFF',
     marginHorizontal: 20,
-    borderRadius: 14,
-    paddingHorizontal: 12,
-    paddingVertical: 4,
+    borderRadius: 20,
+    paddingHorizontal: 18,
+    paddingVertical: 8,
     marginBottom: 12,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -225,13 +226,13 @@ const rowStyles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 14,
   },
-  leftIcon: { fontSize: 18, width: 24, color: '#6F6F6F' },
+  leftIcon: { width: 28, color: '#6F6F6F' },
   center: { flex: 1 },
-  title: { fontSize: 16, color: '#111111' },
-  subtitle: { fontSize: 12, color: '#8B8B8B', marginTop: 2 },
-  chevron: { fontSize: 20, color: '#BDBDBD' },
+  title: { fontSize: 18, color: '#111111' },
+  subtitle: { fontSize: 13, color: '#8B8B8B', marginTop: 2 },
+  chevron: { color: '#BDBDBD' },
   divider: {
     height: StyleSheet.hairlineWidth,
     backgroundColor: '#EFEFEF',
